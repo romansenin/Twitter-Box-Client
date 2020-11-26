@@ -3,7 +3,7 @@
     <h1>Project Twitter Box Client</h1>
 
     <div class="box">
-      <textarea v-model="text" />
+      <textarea v-model="text" @input="checkLength" />
       <div class="chars-left">{{ charsRemaining }}</div>
       <button>Submit</button>
     </div>
@@ -21,6 +21,13 @@ export default {
       text: "",
       maxChars: 280,
     };
+  },
+  methods: {
+    checkLength() {
+      if (this.text.length >= this.maxChars) {
+        this.text = this.text.substring(0, this.maxChars);
+      }
+    },
   },
   computed: {
     charsRemaining() {
