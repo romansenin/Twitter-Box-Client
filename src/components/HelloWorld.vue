@@ -5,7 +5,14 @@
     <div class="box">
       <textarea v-model="text" @input="checkLength" />
       <div class="chars-left">{{ charsRemaining }}</div>
-      <button>Submit</button>
+      <button @click="addTweet">Submit</button>
+    </div>
+    <div class="tweets">
+      <div v-for="tweet in tweets" :key="tweet.id">
+        <div class="box">
+          {{ tweet.text }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +27,7 @@ export default {
     return {
       text: "",
       maxChars: 280,
+      tweets: [],
     };
   },
   methods: {
@@ -27,6 +35,9 @@ export default {
       if (this.text.length >= this.maxChars) {
         this.text = this.text.substring(0, this.maxChars);
       }
+    },
+    addTweet() {
+      this.tweets.unshift({ id: this.tweets.length, text: this.text });
     },
   },
   computed: {
@@ -43,7 +54,7 @@ export default {
   width: 33%;
   background-color: #b8dcdc;
   height: 100px;
-  margin: 0 auto;
+  margin: 0 auto 1em auto;
   display: flex;
   justify-content: center;
   align-items: center;
