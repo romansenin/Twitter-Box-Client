@@ -51,9 +51,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .box {
-  width: 33%;
+  width: 50%;
   background-color: #b8dcdc;
-  height: 100px;
+  /* height: 100px; */
+  padding: 1em;
   margin: 0 auto 1em auto;
   display: flex;
   justify-content: center;
@@ -64,6 +65,8 @@ export default {
 
 .box textarea {
   margin-right: 0.5em;
+  height: 4em;
+  width: 20em;
 }
 
 .chars-left {
