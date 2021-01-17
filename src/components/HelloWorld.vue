@@ -3,7 +3,7 @@
     <h1>Project Twitter Box Client</h1>
 
     <div class="box">
-      <textarea v-model="text" @input="calculateChars" :maxlength="maxChars" />
+      <textarea v-model="text" :maxlength="maxChars" />
       <div class="chars-left">{{ charsRemaining }}</div>
       <button @click="addTweet">Submit</button>
     </div>
@@ -27,18 +27,19 @@ export default {
     return {
       text: "",
       maxChars: 280,
-      charsRemaining: 280,
       tweets: [],
     };
   },
   methods: {
-    calculateChars() {
-      this.charsRemaining = this.maxChars - this.text.length;
-    },
     addTweet() {
       this.tweets.unshift(this.text);
       this.text = "";
       this.calculateChars();
+    },
+  },
+  computed: {
+    charsRemaining() {
+      return this.maxChars - this.text.length;
     },
   },
 };
